@@ -1,3 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+         body {background-color: rgba(187, 250, 221, 0.966);
+        }
+        .flex-container {
+            
+            background-color: rgba(187, 250, 221, 0.966); 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+        .box {
+        
+            padding: 25px;
+            border: 5px solid  rgba(187, 250, 221, 0.966);
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+
 <?php
 
 
@@ -12,21 +36,27 @@ try {
     $dbh = new PDO($dsn, $user, $password);
 
     // この下にプログラムを書きましょう。
+    $re = $dbh->query("SELECT * FROM keijiban_tb;");
 
-
-$re = $dbh->query("SELECT * FROM keijiban_tb;");
+print '<div class="flex-container">';
 while ($kekka = $re->fetch()) {
+print "<div class='box'>";
 print $kekka[0];
 print " | ";
 print $kekka[1];
 print " | ";
 print $kekka[2];
 print "<br>";
+print "</div>";
 }
-
+print "</div>";
 
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
 }
 print "<a href='keijiban.html'>戻る</a>";
 ?>
+
+
+</body>
+</html>
