@@ -33,13 +33,15 @@ header('Content-Type: text/html;charset=utf-8');  // 日本語が正しく表示
 require_once('../db_info.php');
 
 try { 
-    $dbh = new PDO($dsn, $user, $password);
+   
+    $dbh = new PDO($dsn);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // この下にプログラムを書きましょう。
 $name = $_POST["namae"];
 $message = $_POST["message"];   
     
-    $dbh->query("INSERT INTO keijiban_tb (namae,message) VALUES ('{$name}','{$message}');"); 
+    $dbh->query("INSERT INTO keijibanI (namae,message) VALUES ('{$name}','{$message}');"); 
 
     print "以下の内容を投稿しました";
     print "<br>";

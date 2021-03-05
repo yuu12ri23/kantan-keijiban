@@ -31,11 +31,13 @@ header('Content-Type: text/html;charset=utf-8');  // 日本語が正しく表示
 /* Connect to a MySQL database using driver invocation */
 require_once('../db_info.php');
 try { 
-    $dbh = new PDO($dsn, $user, $password);
+   
+    $dbh = new PDO($dsn);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // この下にプログラムを書きましょう。
     $number = $_POST["bangou"];
-    $dbh->query("DELETE FROM keijiban_tb WHERE bangou = ".$number.";");
+    $dbh->query("DELETE FROM keijibanI WHERE bangou = ".$number.";");
 
 
 

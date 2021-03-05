@@ -34,12 +34,14 @@ $user = 'root';
 $password = 'lamp1';
 
 try { 
-    $dbh = new PDO($dsn, $user, $password);
+    
+    $dbh = new PDO($dsn);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // この下にプログラムを書きましょう。
     $search = $_POST["search"];  // 入力された検索する文字列
 
-    $re = $dbh->query("SELECT * FROM keijiban_tb WHERE message LIKE '%{$search}%';");
+    $re = $dbh->query("SELECT * FROM keijibanI WHERE message LIKE '%{$search}%';");
     print "検索結果を表示します<br>";
     while ($kekka = $re->fetch()) {
         print $kekka[0];
